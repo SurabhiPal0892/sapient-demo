@@ -1,0 +1,20 @@
+.container {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .box-border {
+    border: 1px solid black;
+    /* display: inline-block; */
+    margin: 30px;
+    width: 45%;
+    height: 300px;
+  }
+  
+  .box {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+  }
+  

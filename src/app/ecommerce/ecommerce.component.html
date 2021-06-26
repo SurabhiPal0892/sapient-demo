@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="logo-section">
+  <img src="https://www.eattohealbars.com/wp-content/uploads/2018/02/LogoLG.jpg" class="logo-img">
+  </div>
+  <div class="filters">
+    <button class="btn-grid" (click)="switchToGridLayout()"><span class="material-icons">
+        grid_view
+      </span></button>
+    <button class="btn-list" (click)="switchToListLayout()"><span class="material-icons">
+        view_list
+      </span>
+    </button>
+    <select class="dropdown-price" (change)="getSelectedPrice($event)">
+      <option selected hidden value=-1>Filter by price range</option>
+      <option value=-1></option>
+      <option value="0-10">0-10</option>
+      <option value="11-20">11-20</option>
+      <option value="21-30">21-30</option>
+      <option value="31-40">31-40</option>
+      <option value="41-50">41-50</option>
+    </select>
+  </div>
+  <div class="products-layout">
+    <ng-container *ngIf="productsDisplay.length>0;else noProducts">
+      <div [ngClass]="layout=='List'? 'product-list':'product-grid'" *ngFor="let product of productsDisplay">
+        <div class="product-img-section">
+          <img src={{product.img_url}} alt={{product.title}} class="product-img">
+        </div>
+        <div class="product-desc-section">
+          <h4>{{product.title}}</h4>
+          <p>{{product.price}}</p>
+          <span class="material-icons-outlined">
+            add_shopping_cart
+            </span>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #noProducts>
+      <p class="no-products">No products available</p>
+    </ng-template>
+  </div>
+</div>

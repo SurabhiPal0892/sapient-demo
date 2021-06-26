@@ -1,0 +1,36 @@
+.container {
+  width: 30%;
+  transform: translate(120%, 30%);
+  background-color: rgb(65, 62, 62);
+  box-shadow: 1px 1px 1px 1px rgba(53, 52, 50, 0.74);
+  padding: 30px;
+}
+
+.outer {
+  width: 100%;
+  height: -webkit-fill-available;
+}
+
+ul {
+  list-style: none;
+  text-align: justify;
+}
+
+li {
+  padding: 5px 5px 5px 10px;
+  font-size: 130%;
+  width: 100%;
+  color: white;
+}
+
+li:hover {
+  font-size: 140%;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: rgb(184, 229, 245);
+  color: black;
+}
+
+.quick-links {
+  color: deepskyblue;
+}

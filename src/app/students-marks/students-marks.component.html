@@ -1,0 +1,11 @@
+<div class="container">
+  <table>
+    <tr>
+      <th *ngFor="let header of headers" (click)="sortTable(header)">{{header | uppercase}}</th>
+    </tr>
+    <tr *ngFor="let val of studentRecords">
+      <td *ngFor="let header of headers">{{val[header]}}</td>
+    </tr>
+  </table>
+
+</div>

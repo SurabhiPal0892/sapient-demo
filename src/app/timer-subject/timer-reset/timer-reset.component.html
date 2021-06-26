@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="main">
+    <p>
+      Enter Timer Limit&nbsp;
+      <input type="number" #timeLimit class="inp-time">
+    </p>
+    <p class='btn'>
+      <button class="btn-blue" (click)=startClicked(timeLimit.value)>Start</button>
+      <button class="btn-grey" (click)=pauseClicked()>Pause</button>
+      <button class="btn-grey" (click)=resetClicked(timeLimit.value)>Reset</button>
+    </p>
+    <ng-container *ngFor="let time of pausedAtTimes">
+      <p>Paused at {{time}}</p>
+    </ng-container>
+  </div>
+
+</div>

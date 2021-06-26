@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  height: 100%;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 60%;
+  margin: auto;
+  margin-top: 100px;
+}
+
+td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: right;
+}
+
+th {
+  background-color: beige;
+  text-align: left;
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
+
+td:first-child,
+td:nth-child(3) {
+  text-align: left;
+}
