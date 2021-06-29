@@ -6,25 +6,26 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
   styleUrls: ['./timer-log.component.css']
 })
 export class TimerLogComponent implements OnInit {
-  @Input() actionLog: any = {};
-  arr: any = [];
+  @Input() actionType: any;
+  actionLog: any = [];
   action: string;
   constructor() { }
 
   ngOnInit() {
-    this.actionLog = { started: 'false', paused: 'false' };
   }
 
   ngOnChanges(changes: SimpleChanges) {
     let time = Date.now();
     let obj = {};
-    if (this.actionLog.paused == 'true') {
-      obj = { action: 'Paused', time: time };
-      this.arr.push(obj);
-    }
-    if (this.actionLog.started == 'true') {
-      obj = { action: 'Started', time: time };
-      this.arr.push(obj);
+    if (this.actionType) {
+      if (this.actionType.pause) {
+        obj = { action: 'Paused', time: time };
+        this.actionLog.push(obj);
+      }
+      if (this.actionType.start) {
+        obj = { action: 'Started', time: time };
+        this.actionLog.push(obj);
+      }
     }
   }
 }

@@ -12,7 +12,7 @@ export class EcommerceComponent implements OnInit {
   productsDisplay: any[];
   constructor() { }
   ngOnInit() {
-    this.products = products_sample_data;
+    this.products = [...products_sample_data];
     this.productsDisplay = this.products;
   }
   switchToGridLayout() {
@@ -25,7 +25,7 @@ export class EcommerceComponent implements OnInit {
   getSelectedPrice(event) {
     let price = event.target.value;
     if (price < 0) {
-      return;
+      this.productsDisplay=[...products_sample_data];
     } else {
       let range = price.split('-');
       let p = this.products.filter(p => {

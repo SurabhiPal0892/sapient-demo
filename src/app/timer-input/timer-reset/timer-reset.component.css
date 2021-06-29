@@ -16,26 +16,35 @@
   border: none;
 }
 .btn {
-  text-align: right;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 p {
   font-weight: 500;
 }
 .inp-time {
   padding: 2px 0px 2px 0px;
-  width: 55%;
+  width: 30%;
   text-align: right;
 }
 
+.input-time{
+  text-align: center;
+  padding: 70px 0px 0px 0px;
+}
+
 .container {
-  height: 250px;
+  height: 100%;
   width: 100%;
-  position: relative;
+  overflow-y: scroll;
 }
-.main {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: inline-block;
-  transform: translate(-50%, -50%);
+
+.first-section{
+  height: 50%;
 }
+
+.paused-at{
+  text-align: center;
+}
+

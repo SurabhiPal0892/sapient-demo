@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
       { path: '', component: HomeComponent },
       { path: 'banner', loadChildren: () => import('./ui-design/ui-design.module').then(m => m.UiDesignModule) },
       { path: 'ecommerce', loadChildren: () => import('./ecommerce/ecommerce.module').then(m => m.EcommerceModule) },
-      { path: 'timer', component: TimerComponent },
+      { path: 'timer', loadChildren: () => import('./timer-input/timer-input.module').then(m => m.TimerInputModule) },
       { path: 'scorecard', loadChildren: () => import('./students-marks/students-marks.module').then(m => m.StudentsMarksModule) },
       {
         path: 'blocks',

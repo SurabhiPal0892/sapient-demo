@@ -15,6 +15,8 @@ export class TimerComponent implements OnInit {
   actionLog = { started: 'false', paused: 'false' };
   updatedTimer: any;
   nTime: any;
+  actionCount: any;
+  actionType: any;
   constructor() { }
 
   ngOnInit() { }
@@ -24,8 +26,15 @@ export class TimerComponent implements OnInit {
   }
 
   getTimer(count) {
-    this.nTime = count;
-    this.countdownTimer = { time: this.nTime };
+    this.countdownTimer = { time:count.time  };
+  }
+
+  getActionCount(actionCount){
+    this.actionCount=actionCount;
+  }
+
+  getActionType(actionType){
+    this.actionType=actionType;
   }
 
   isPauseClicked(paused) {

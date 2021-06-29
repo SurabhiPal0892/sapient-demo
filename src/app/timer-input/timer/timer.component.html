@@ -1,18 +1,17 @@
 <div class="container">
   <div class="box-border">
-    <app-countdown-timer [timer]="countdownTimer" [pause]="isPaused" [start]="isStart"
+    <app-countdown-timer [timer]="countdownTimer" [actionType]="actionType"
       (updatedTimer)="getUpdatedTimer($event)"></app-countdown-timer>
   </div>
   <div class="box-border">
-    <app-timer-reset (timelimit)="getTimer($event)" (isPaused)="isPauseClicked($event)"
-      (isStart)="isStartClicked($event)" (pauseCounts)="getPauseCounts($event)" (startCounts)="getStartCounts($event)"
+    <app-timer-reset (timelimit)="getTimer($event)" (actionCount)="getActionCount($event)" (actionType)="getActionType($event)"
       [countdownTimer]="updatedTimer">
     </app-timer-reset>
   </div>
   <div class="box">
-    <app-timer-log [actionLog]=actionLog></app-timer-log>
+    <app-timer-log [actionType]="actionType"></app-timer-log>
   </div>
   <div class="box">
-    <app-click-counts [counts]=counts></app-click-counts>
+    <app-click-counts [actionCount]="actionCount"></app-click-counts>
   </div>
 </div>

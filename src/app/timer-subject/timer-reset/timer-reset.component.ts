@@ -14,6 +14,7 @@ export class TimerResetComponent implements OnInit {
   reset = false;
   updatedTime: any;
   pausedAtTimes: any = [];
+  showStart=true;
 
   constructor(private _notifyCounts: NotifyCountsService, private _notifyAction: NotifyActionService,
     private _notifyTimerValue: NotifyTimerValueService) {
@@ -28,6 +29,7 @@ export class TimerResetComponent implements OnInit {
 
   startClicked(time) {
     this.startCount++;
+    this.showStart=false;
     this.sendClickCounts();
     this.reset = false;
     this.sendActionType('start');
@@ -42,12 +44,14 @@ export class TimerResetComponent implements OnInit {
   pauseClicked() {
     this.pauseCount++;
     this.reset = false;
+    this.showStart=true;
     this.sendClickCounts();
     this.sendActionType('pause');
   }
 
   resetClicked(time) {
     this.reset = true;
+    this.showStart=true;
     this.startCount = 0;
     this.pauseCount = 0;
     this.updatedTime = null;

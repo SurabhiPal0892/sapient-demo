@@ -7,48 +7,44 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TimerResetComponent implements OnInit {
   @Output() timelimit = new EventEmitter<{ time: any }>();
-  @Output() isPaused = new EventEmitter();
-  @Output() isStart = new EventEmitter();
-  @Output() pauseCounts = new EventEmitter();
-  @Output() startCounts = new EventEmitter();
+  @Output() actionType = new EventEmitter();
+  @Output() actionCount = new EventEmitter();
   @Input() countdownTimer;
-  pauseClick = 0;
-  startClick = 0;
-  arr: any = [];
+  pausedAt: any = [];
+  startCount=0;
+  pauseCount=0;
+  showStart: boolean=true;
   constructor() { }
 
   ngOnInit() { }
 
   ngOnChanges() {
-    if (this.pauseClick > 0) {
-      this.timelimit.emit(this.countdownTimer);
-      this.arr.push(`Paused at ${this.countdownTimer}`);
+    if (this.countdownTimer) {
+      this.pausedAt.push(`Paused at ${this.countdownTimer}`);
     }
   }
 
   startClicked(timeLimit) {
+    this.showStart=false;
     this.timelimit.emit({ time: timeLimit });
-    this.isStart.emit('true');
-    this.isPaused.emit('false');
-    this.startClick++;
-    this.startCounts.emit(this.startClick);
-  }
+    this.actionType.emit({start:true,pause:false,reset:false});
+    this.startCount++;
+    this.actionCount.emit({start:this.startCount,pause:this.pauseCount});
+  } 
 
   pauseClicked() {
-    this.isStart.emit('false');
-    this.isPaused.emit('true');
-    this.pauseClick++;
-    this.timelimit.emit({ time: this.countdownTimer });
-    this.pauseCounts.emit(this.pauseClick);
+    this.showStart=true;
+    this.pauseCount++;
+    this.actionType.emit({start:false,pause:true,reset:false});
+    this.actionCount.emit({start:this.startCount,pause:this.pauseCount});
   }
 
   resetClicked(timeLimit) {
+    this.showStart=true;
     this.timelimit.emit({ time: timeLimit });
-    this.isStart.emit('false');
-    this.isPaused.emit('false');
-    this.startClick = 0;
-    this.pauseClick = 0;
-    this.pauseCounts.emit(this.pauseClick);
-    this.startCounts.emit(this.startClick);
+    this.startCount = 0;
+    this.pauseCount = 0;
+    this.actionType.emit({start:false,pause:false,reset:true});
+    this.actionCount.emit({start:this.startCount,pause:this.pauseCount});
   }
 }

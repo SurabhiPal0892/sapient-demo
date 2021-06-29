@@ -13,41 +13,63 @@ import {
   styleUrls: ['./countdown-timer.component.css']
 })
 export class CountdownTimerComponent implements OnInit {
-  @Input() timer = { time: 1000 };
-  @Input() pause: any;
-  @Input() start: any;
+  @Input() timer:any;
+  @Input() actionType:any;
   @Output() updatedTimer = new EventEmitter();
   interval: any;
-  previousValue: any;
-  countdown: any;
-  newTimer: any;
+  countdownTimer=1000;
+  pausedAt: any;
 
   constructor() { }
 
   ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
-    if (this.start == 'true' && this.pause == 'false') {
+    debugger
+    if(this.actionType){
+    if (this.actionType.start && !this.actionType.pause) {
       this.startTimer();
-    } else if (this.pause == 'true' && this.start == 'false') {
+    } else if (!this.actionType.start && this.actionType.pause) {
       this.pauseTimer();
-    } else if (this.pause == 'false' && this.start == 'false') {
+      this.updatedTimer.emit(this.pausedAt);
+
+    } else if (!this.actionType.start && !this.actionType.pause) {
+      if(this.timer['time'] && this.timer['time']!==""){
+      this.countdownTimer=this.timer['time'];
+      }
+      else{
+        this.countdownTimer=1000;
+      }
       this.resetTimer();
     }
   }
+  }
 
-  resetTimer() { }
+  resetTimer() {
+    this.pausedAt=0;
+    this.pauseTimer();
+   }
 
   pauseTimer() {
-    this.updatedTimer.emit(this.timer.time);
+    this.pausedAt=this.countdownTimer;
     clearInterval(this.interval);
   }
 
   startTimer() {
+    if(this.pausedAt){
+      this.countdownTimer=this.pausedAt;
+    }
+    else{
+      if(this.timer.time){
+        this.countdownTimer=this.timer.time;
+      }
+      else{
+        this.countdownTimer=1000;
+      }
+    }
     this.interval = setInterval(() => {
-      if (this.timer['time'] > 0) {
-        this.timer['time']--;
+      if (this.countdownTimer > 0) {
+        this.countdownTimer--;
       }
     }, 1000);
   }
