@@ -14,6 +14,7 @@ import { StudentsMarksComponent } from './students-marks/students-marks.componen
 import { DynamicDivsComponent } from './dynamic-divs/dynamic-divs.component';
 import { ScrollingModule} from '@angular/cdk/scrolling';
 import { HomeComponent } from './home/home.component';
+import { BlocksComponent } from './blocks/blocks.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, ScrollingModule, AppRoutingModule],
@@ -28,7 +29,8 @@ import { HomeComponent } from './home/home.component';
     TimerComponent,
     StudentsMarksComponent,
     DynamicDivsComponent,
-    HomeComponent
+    HomeComponent,
+    BlocksComponent
   ],
   bootstrap: [AppComponent]
 })

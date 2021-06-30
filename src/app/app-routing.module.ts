@@ -2,12 +2,14 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { TimerComponent } from './timer-input/timer/timer.component';
 import { HomeComponent } from './home/home.component';
+import { BlocksComponent } from './blocks/blocks.component';
 
 @NgModule({
   declarations: [],
   imports: [
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
+      { path: 'new', component: BlocksComponent },
       { path: 'banner', loadChildren: () => import('./ui-design/ui-design.module').then(m => m.UiDesignModule) },
       { path: 'ecommerce', loadChildren: () => import('./ecommerce/ecommerce.module').then(m => m.EcommerceModule) },
       { path: 'timer', loadChildren: () => import('./timer-input/timer-input.module').then(m => m.TimerInputModule) },
