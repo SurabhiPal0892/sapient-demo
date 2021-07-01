@@ -6,31 +6,34 @@ import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular
   styleUrls: ['./blocks.component.css']
 })
 export class BlocksComponent implements OnInit {
-  count: any=0;
+  count: any = 0;
   @HostListener('document:scroll', ['$event']) onScroll($event: Event): void {
-    if($event) {
+    if ($event) {
       this.createDivs($event);
     }
   }
   createDivs($event: Event) {
     this.count++;
-    let container=this.el.nativeElement.querySelector('div');
-    let div=this.renderer.createElement('div');
-    let btn=this.renderer.createElement('button');
-    this.renderer.setProperty(btn,'id',this.count);
-    this.renderer.addClass(div,'dynamic-div');
-    this.renderer.addClass(btn,'btn');
-    let text=this.renderer.createText('CLICK ME');
-    this.renderer.appendChild(btn,text);
-    this.renderer.appendChild(div,btn);
-    this.renderer.appendChild(container,div);
-    this.renderer.listen(btn, 'click', (event):void => {
+    let container = this.el.nativeElement.querySelector('div');
+    let div = this.renderer.createElement('div');
+    let btn = this.renderer.createElement('button');
+    this.renderer.setProperty(btn, 'id', this.count);
+    this.renderer.addClass(div, 'dynamic-div');
+    this.renderer.addClass(btn, 'btn');
+    let text = this.renderer.createText('CLICK ME');
+    this.renderer.appendChild(btn, text);
+    this.renderer.appendChild(div, btn);
+    this.renderer.appendChild(container, div);
+    this.renderer.listen(btn, 'click', (event): void => {
       alert(`Button in div ${event.target.id} is clicked`);
     })
-    this.renderer.destroy()
   }
 
-  constructor(private renderer:Renderer2,private el:ElementRef){}
+  constructor(private renderer: Renderer2, private el: ElementRef) { }
 
-  ngOnInit(){}
+  ngOnInit() { }
+
+  ngOnDestroy(){
+    this.renderer.destroy();
+  }
 }
