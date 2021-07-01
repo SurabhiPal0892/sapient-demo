@@ -1,3 +1,8 @@
 <div id="main" class="container">
-
+    <!-- showing 6 divs initially -->
+    <div class="dynamic-div" *ngFor="let d of initialDivs;let i=index">
+        <button class="btn" (click)="showAlert(i+1)" id={{i+1}}>
+            CLICK ME
+        </button>
+    </div>
 </div>

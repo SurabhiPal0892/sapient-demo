@@ -44,6 +44,7 @@ export class TimerResetComponent implements OnInit {
     this.timelimit.emit({ time: timeLimit });
     this.startCount = 0;
     this.pauseCount = 0;
+    this.pausedAt=[];
     this.actionType.emit({start:false,pause:false,reset:true});
     this.actionCount.emit({start:this.startCount,pause:this.pauseCount});
   }

@@ -26,6 +26,9 @@ export class TimerLogComponent implements OnInit {
         obj = { action: 'Started', time: time };
         this.actionLog.push(obj);
       }
+      if(this.actionType.reset){
+        this.actionLog=[];
+      }
     }
   }
 }

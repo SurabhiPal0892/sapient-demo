@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { NotifyActionService } from '../Services/notify-action.service';
 import { NotifyCountsService } from '../Services/notify-counts.service';
 import { NotifyTimerValueService } from '../Services/notify-timer-value.service';
@@ -8,17 +9,18 @@ import { NotifyTimerValueService } from '../Services/notify-timer-value.service'
   templateUrl: './timer-reset.component.html',
   styleUrls: ['./timer-reset.component.css']
 })
-export class TimerResetComponent implements OnInit {
+export class TimerResetComponent implements OnInit,OnDestroy {
   startCount = 0
   pauseCount = 0;
   reset = false;
   updatedTime: any;
   pausedAtTimes: any = [];
   showStart=true;
+  timerValue$: Subscription;
 
   constructor(private _notifyCounts: NotifyCountsService, private _notifyAction: NotifyActionService,
     private _notifyTimerValue: NotifyTimerValueService) {
-    this._notifyTimerValue.getPauseTime().subscribe(t => {
+    this.timerValue$=this._notifyTimerValue.getPauseTime().subscribe(t => {
       this.updatedTime = t;
       this.pausedAtTimes.push(t);
     })
@@ -28,6 +30,7 @@ export class TimerResetComponent implements OnInit {
   }
 
   startClicked(time) {
+    debugger
     this.startCount++;
     this.showStart=false;
     this.sendClickCounts();
@@ -86,6 +89,10 @@ export class TimerResetComponent implements OnInit {
       this._notifyAction.sendStartClicked(false);
       this._notifyAction.sendPauseClicked(false);
     }
+  }
+
+  ngOnDestroy(){
+    this.timerValue$.unsubscribe();
   }
 
 }

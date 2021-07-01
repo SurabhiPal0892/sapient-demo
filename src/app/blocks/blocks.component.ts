@@ -6,7 +6,9 @@ import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular
   styleUrls: ['./blocks.component.css']
 })
 export class BlocksComponent implements OnInit {
-  count: any = 0;
+  initialDivs=[1,2,3,4,5,6];
+  count: any = this.initialDivs.length;
+
   @HostListener('document:scroll', ['$event']) onScroll($event: Event): void {
     if ($event) {
       this.createDivs($event);
@@ -35,5 +37,9 @@ export class BlocksComponent implements OnInit {
 
   ngOnDestroy(){
     this.renderer.destroy();
+  }
+
+  showAlert(idx){
+    alert(`Button in div ${idx} is clicked`);
   }
 }

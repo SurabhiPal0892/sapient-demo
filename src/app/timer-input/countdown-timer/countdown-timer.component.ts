@@ -25,7 +25,6 @@ export class CountdownTimerComponent implements OnInit {
   ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) {
-    debugger
     if(this.actionType){
     if (this.actionType.start && !this.actionType.pause) {
       this.startTimer();
