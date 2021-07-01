@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DynamicDivsComponent } from './dynamic-divs.component';
+import { BlocksComponent } from './blocks.component';
 
 const routes: Routes = [
-  {path:'',component:DynamicDivsComponent}
+  {path:'',component:BlocksComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DynamicDivsRoutingModule { }
+export class BlocksRoutingModule { }

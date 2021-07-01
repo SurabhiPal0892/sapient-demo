@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { records } from '../dummy-data/students-marks';
 
 @Component({
-  selector: 'app-students-marks',
-  templateUrl: './students-marks.component.html',
-  styleUrls: ['./students-marks.component.css']
+  selector: 'app-scorecard',
+  templateUrl: './scorecard.component.html',
+  styleUrls: ['./scorecard.component.css']
 })
-export class StudentsMarksComponent implements OnInit {
+export class ScorecardComponent implements OnInit {
   headers: string[];
   sortOrder = 'none';
   constructor() { }

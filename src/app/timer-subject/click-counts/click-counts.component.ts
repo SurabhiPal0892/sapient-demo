@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NotifyCountsService } from '../notify-counts.service';
+import { NotifyCountsService } from '../Services/notify-counts.service';
 
 @Component({
   selector: 'app-click-counts',

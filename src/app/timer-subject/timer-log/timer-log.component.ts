@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NotifyActionService } from '../notify-action.service';
+import { NotifyActionService } from '../Services/notify-action.service';
 
 @Component({
   selector: 'app-timer-log',

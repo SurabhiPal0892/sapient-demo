@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UiDesignRoutingModule } from './ui-design-routing.module';
+import { BlocksRoutingModule } from './blocks-routing.module';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    UiDesignRoutingModule
+    BlocksRoutingModule
   ]
 })
-export class UiDesignModule { }
+export class BlocksModule { }

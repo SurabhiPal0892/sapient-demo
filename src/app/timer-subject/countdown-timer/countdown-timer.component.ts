@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NotifyActionService } from '../notify-action.service';
-import { NotifyTimerValueService } from '../notify-timer-value.service';
+import { NotifyActionService } from '../Services/notify-action.service';
+import { NotifyTimerValueService } from '../Services/notify-timer-value.service';
 
 @Component({
   selector: 'app-countdown-timer',

@@ -1,22 +1,19 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { TimerComponent } from './timer-input/timer/timer.component';
 import { HomeComponent } from './home/home.component';
-import { BlocksComponent } from './blocks/blocks.component';
 
 @NgModule({
   declarations: [],
   imports: [
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'new', component: BlocksComponent },
-      { path: 'banner', loadChildren: () => import('./ui-design/ui-design.module').then(m => m.UiDesignModule) },
+      { path: 'banner', loadChildren: () => import('./banner/banner.module').then(m => m.BannerModule) },
       { path: 'ecommerce', loadChildren: () => import('./ecommerce/ecommerce.module').then(m => m.EcommerceModule) },
       { path: 'timer', loadChildren: () => import('./timer-input/timer-input.module').then(m => m.TimerInputModule) },
-      { path: 'scorecard', loadChildren: () => import('./students-marks/students-marks.module').then(m => m.StudentsMarksModule) },
+      { path: 'scorecard', loadChildren: () => import('./scorecard/scorecard.module').then(m => m.ScorecardModule) },
       {
         path: 'blocks',
-        loadChildren: () => import('./dynamic-divs/dynamic-divs.module').then(m => m.DynamicDivsModule)
+        loadChildren: () => import('./blocks/blocks.module').then(m => m.BlocksModule)
       },
       {
         path: 'subject', loadChildren: () => import('./timer-subject/timer-subject.module').then(m => m.TimerSubjectModule)

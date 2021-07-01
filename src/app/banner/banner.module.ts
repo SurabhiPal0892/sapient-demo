@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DynamicDivsRoutingModule } from './dynamic-divs-routing.module';
+import { BannerRoutingModule } from './banner-routing.module';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    DynamicDivsRoutingModule
+    BannerRoutingModule
   ]
 })
-export class DynamicDivsModule { }
+export class BannerModule { }
