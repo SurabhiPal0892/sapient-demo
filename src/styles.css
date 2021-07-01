@@ -14,7 +14,3 @@
     min-width: 100vw;
     font-family: 'Nunito', sans-serif;
   }
-  
-  .cdk-virtual-scroll-orientation-vertical .cdk-virtual-scroll-content-wrapper{
-    margin: 10px 50px 0px 50px;
-  }
