@@ -2,10 +2,10 @@
   <div class="first-section">
     <p class="input-time">
       Enter Timer Limit&nbsp;
-      <input type="number" #timeLimit class="inp-time">
+      <input type="number" #timeLimit (input)="updateTimerValue(timeLimit.value)" class="inp-time">
     </p>
     <p class='btn'>
-      <button class="btn-blue" (click)=startClicked(timeLimit.value) *ngIf="showStart;else showPause">Start</button>
+      <button class="btn-blue" (click)=startClicked() *ngIf="showStart;else showPause">Start</button>
       <ng-template #showPause>
         <button class="btn-grey" (click)=pauseClicked()>Pause</button>
       </ng-template>

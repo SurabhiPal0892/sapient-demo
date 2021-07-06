@@ -17,15 +17,17 @@
   overflow: hidden;
   box-sizing: border-box;
 }
+
 .marquee span {
   display: inline-block;
   padding-left: 100%;
-  line-height: 2;
+  line-height: 3;
   animation: marquee 15s linear infinite;
   font-size: 130%;
   color: red;
   font-weight: 800;
 }
+
 @keyframes marquee {
   0% {
     transform: translate(0, 0);

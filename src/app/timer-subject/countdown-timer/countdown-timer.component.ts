@@ -9,32 +9,33 @@ import { NotifyTimerValueService } from '../Services/notify-timer-value.service'
   styleUrls: ['./countdown-timer.component.css']
 })
 export class CountdownTimerComponent implements OnInit,OnDestroy {
-  interval: any;
+  interval: ReturnType<typeof setTimeout>;
   countdownValue = 1000;
   timerValue$: Subscription;
   actionPause$: Subscription;
   actionReset$: Subscription;
   actionStart$: Subscription;
+  pausedAt: number;
 
   constructor(private _notifyTimerValue: NotifyTimerValueService, private _notifyAction: NotifyActionService) {
-    debugger
     this.timerValue$=this._notifyTimerValue.getTimerValue().subscribe(t => {
       if (t && t !== "") {
         this.countdownValue = t;
       }
-      else {
+      else{
         this.countdownValue = 1000;
       }
     })
     this.actionPause$=this._notifyAction.getPauseClicked().subscribe(e => {
       if (e) {
+        this.pausedAt=this.countdownValue;
         this.pauseTimer();
-        this._notifyTimerValue.sendPauseTime(this.countdownValue);
+        this._notifyTimerValue.sendPauseTime(this.pausedAt);
       }
     })
     this.actionReset$=this._notifyAction.getResetClicked().subscribe(e => {
       if (e) {
-        this.pauseTimer();
+        this.resetTimer();
       }
     })
     this.actionStart$=this._notifyAction.getStartClicked().subscribe(e => {
@@ -45,6 +46,11 @@ export class CountdownTimerComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
+  }
+
+  resetTimer(){
+    this.pausedAt=0;
+    this.pauseTimer();
   }
 
   pauseTimer() {

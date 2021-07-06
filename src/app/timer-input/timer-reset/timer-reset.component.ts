@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'app-timer-reset',
@@ -18,15 +18,20 @@ export class TimerResetComponent implements OnInit {
 
   ngOnInit() { }
 
-  ngOnChanges() {
+  ngOnChanges(changes:SimpleChange) {
+    console.log(changes)
     if (this.countdownTimer) {
       this.pausedAt.push(`Paused at ${this.countdownTimer}`);
     }
   }
 
-  startClicked(timeLimit) {
+  updateTimerValue(time){
+    this.timelimit.emit({time:time})
+  }
+
+  startClicked() {
     this.showStart=false;
-    this.timelimit.emit({ time: timeLimit });
+    // this.timelimit.emit({ time: timeLimit });
     this.actionType.emit({start:true,pause:false,reset:false});
     this.startCount++;
     this.actionCount.emit({start:this.startCount,pause:this.pauseCount});

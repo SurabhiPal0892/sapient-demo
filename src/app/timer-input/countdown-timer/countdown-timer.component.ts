@@ -13,63 +13,84 @@ import {
   styleUrls: ['./countdown-timer.component.css']
 })
 export class CountdownTimerComponent implements OnInit {
-  @Input() timer:any;
-  @Input() actionType:any;
+  @Input() timer;
+  @Input() actionType: { start: boolean, pause: boolean, reset: boolean };
   @Output() updatedTimer = new EventEmitter();
-  interval: any;
-  countdownTimer=1000;
-  pausedAt: any;
+  interval: ReturnType<typeof setTimeout>;
+  pausedAt: number;
+  countdownValue: number;
 
   constructor() { }
 
   ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if(this.actionType){
-    if (this.actionType.start && !this.actionType.pause) {
-      this.startTimer();
-    } else if (!this.actionType.start && this.actionType.pause) {
-      this.pauseTimer();
-      this.updatedTimer.emit(this.pausedAt);
+    this.setCountdownValue(changes);
+    this.setActionType(changes);
+  }
 
-    } else if (!this.actionType.start && !this.actionType.pause) {
-      if(this.timer['time'] && this.timer['time']!==""){
-      this.countdownTimer=this.timer['time'];
+  setActionType(changes) {
+    if (changes.actionType) {
+      if (changes.actionType.currentValue) {
+        if (changes.actionType.currentValue['start'] && !changes.actionType.currentValue['pause']) {
+          this.startTimer();
+        } else if (!changes.actionType.currentValue['start'] && changes.actionType.currentValue['pause']) {
+          this.pauseTimer();
+          this.updatedTimer.emit(this.pausedAt);
+
+        } else if (!changes.actionType.currentValue['start'] && !changes.actionType.currentValue['pause']) {
+          if (this.timer['time']) {
+            this.countdownValue = this.timer['time'];
+          }
+          else {
+            this.countdownValue = 1000;
+          }
+          this.resetTimer();
+        }
       }
-      else{
-        this.countdownTimer=1000;
-      }
-      this.resetTimer();
     }
   }
+
+  setCountdownValue(changes) {
+    if (changes.timer) {
+      if (changes.timer.currentValue && changes.timer.previousValue) {
+        if (changes.timer.currentValue['time'] !== changes.timer.previousValue['time']) {
+          if (changes.timer.currentValue['time'] == "") {
+            this.countdownValue = 1000;
+          }
+          else {
+            this.countdownValue = this.timer.time;
+          }
+          this.pausedAt = 0;
+        }
+      }
+      else {
+        if (this.pausedAt) {
+          this.countdownValue = this.pausedAt;
+        }
+        else {
+          this.countdownValue = 1000;
+        }
+      }
+    }
   }
 
   resetTimer() {
-    this.pausedAt=0;
+    this.pausedAt = 0;
     this.pauseTimer();
-   }
+  }
 
   pauseTimer() {
-    this.pausedAt=this.countdownTimer;
+    this.pausedAt = this.countdownValue;
     clearInterval(this.interval);
   }
 
   startTimer() {
-    if(this.pausedAt){
-      this.countdownTimer=this.pausedAt;
-    }
-    else{
-      if(this.timer.time){
-        this.countdownTimer=this.timer.time;
-      }
-      else{
-        this.countdownTimer=1000;
-      }
-    }
     this.interval = setInterval(() => {
-      if (this.countdownTimer > 0) {
-        this.countdownTimer--;
+      if (this.countdownValue > 0) {
+        this.countdownValue--;
       }
     }, 1000);
   }
+
 }

@@ -6,6 +6,7 @@ import { TimerLogComponent } from './timer-log/timer-log.component';
 import { TimerResetComponent } from './timer-reset/timer-reset.component';
 import { TimerComponent } from './timer/timer.component';
 import { TimerSubjectRoutingModule } from './timer-subject-routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -19,6 +20,7 @@ import { TimerSubjectRoutingModule } from './timer-subject-routing.module';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     TimerSubjectRoutingModule
   ]
 })

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, SimpleChange } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NotifyActionService } from '../Services/notify-action.service';
 import { NotifyCountsService } from '../Services/notify-counts.service';
@@ -13,10 +13,11 @@ export class TimerResetComponent implements OnInit,OnDestroy {
   startCount = 0
   pauseCount = 0;
   reset = false;
-  updatedTime: any;
-  pausedAtTimes: any = [];
+  updatedTime: number;
+  pausedAtTimes= [];
   showStart=true;
   timerValue$: Subscription;
+  timeLimit
 
   constructor(private _notifyCounts: NotifyCountsService, private _notifyAction: NotifyActionService,
     private _notifyTimerValue: NotifyTimerValueService) {
@@ -29,19 +30,16 @@ export class TimerResetComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
   }
 
-  startClicked(time) {
-    debugger
+  updateTimerValue(time){
+    this.sendTimerValue(time);
+  }
+
+  startClicked() {
     this.startCount++;
     this.showStart=false;
     this.sendClickCounts();
     this.reset = false;
     this.sendActionType('start');
-    if (this.updatedTime) {
-      this.sendTimerValue(this.updatedTime);
-    }
-    else {
-      this.sendTimerValue(time);
-    }
   }
 
   pauseClicked() {
