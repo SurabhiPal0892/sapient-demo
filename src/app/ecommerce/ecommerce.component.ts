@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { products_sample_data } from '../dummy-data/data';
+import { layoutType } from './enum/layout.enum';
 
 @Component({
   selector: 'app-ecommerce',
@@ -7,33 +8,39 @@ import { products_sample_data } from '../dummy-data/data';
   styleUrls: ['./ecommerce.component.css']
 })
 export class EcommerceComponent implements OnInit {
-  products = [];
-  layout = 'Grid';
-  productsDisplay: any[];
+  
+  allProducts = [];
+  layout = layoutType.grid;
+  productsToDisplay = [];
+
   constructor() { }
+
   ngOnInit() {
-    this.products = [...products_sample_data];
-    this.productsDisplay = this.products;
-  }
-  switchToGridLayout() {
-    this.layout = 'Grid';
-  }
-  switchToListLayout() {
-    this.layout = 'List';
+    this.allProducts = [...products_sample_data];
+    this.productsToDisplay = this.allProducts;
   }
 
-  getSelectedPrice(event) {
+  switchToGridLayout() {
+    this.layout = layoutType.grid;
+  }
+
+  switchToListLayout() {
+    this.layout = layoutType.list;
+  }
+
+  getProductsOfSelectedPrice(event) {
     let price = event.target.value;
     if (price < 0) {
-      this.productsDisplay=[...products_sample_data];
+      this.productsToDisplay = [...products_sample_data];
     } else {
       let range = price.split('-');
-      let p = this.products.filter(p => {
-        if (p.price >= range[0] && p.price <= range[1]) {
+      let filteredProducts = this.allProducts.filter(product => {
+        if (product.price >= range[0] && product.price <= range[1]) {
           return true;
         }
       });
-      this.productsDisplay = p;
+      this.productsToDisplay = filteredProducts;
     }
   }
+
 }

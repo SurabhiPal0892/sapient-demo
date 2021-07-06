@@ -7,10 +7,13 @@ import { records } from '../dummy-data/students-marks';
   styleUrls: ['./scorecard.component.css']
 })
 export class ScorecardComponent implements OnInit {
+
   headers: string[];
   sortOrder = 'none';
-  constructor() { }
   studentRecords = [...records];
+
+  constructor() { }
+  
   ngOnInit() {
     this.headers = Object.keys(this.studentRecords[0]);
   }

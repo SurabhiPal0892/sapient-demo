@@ -10,7 +10,7 @@
         view_list
       </span>
     </button>
-    <select class="dropdown-price" (change)="getSelectedPrice($event)">
+    <select class="dropdown-price" (change)="getProductsOfSelectedPrice($event)">
       <option selected value=-1>Filter by price range</option>
       <option value="0-10">0-10</option>
       <option value="11-20">11-20</option>
@@ -20,8 +20,8 @@
     </select>
   </div>
   <div class="products-layout">
-    <ng-container *ngIf="productsDisplay.length>0;else noProducts">
-      <div [ngClass]="layout=='List'? 'product-list':'product-grid'" *ngFor="let product of productsDisplay">
+    <ng-container *ngIf="productsToDisplay.length>0;else noProducts">
+      <div [ngClass]="layout==1? 'product-list':'product-grid'" *ngFor="let product of productsToDisplay">
         <div class="product-img-section">
           <img src={{product.img_url}} alt={{product.title}} class="product-img">
         </div>
