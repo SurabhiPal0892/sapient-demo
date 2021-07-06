@@ -6,17 +6,26 @@ import { Component, ElementRef, HostListener, OnInit, Renderer2 } from '@angular
   styleUrls: ['./blocks.component.css']
 })
 export class BlocksComponent implements OnInit {
-  initialDivs=[1,2,3,4,5,6];
-  count: any = this.initialDivs.length;
+  initialDivs = [1, 2, 3, 4, 5, 6];
+  count: number = this.initialDivs.length;
 
   @HostListener('document:scroll', ['$event']) onScroll($event: Event): void {
     if ($event) {
       this.createDivs($event);
     }
   }
+
+  constructor(private renderer: Renderer2, private elementRef: ElementRef) { }
+
+  ngOnInit() { }
+
+  showAlert(idx:number) {
+    alert(`Button in div ${idx} is clicked`);
+  }
+
   createDivs($event: Event) {
     this.count++;
-    let container = this.el.nativeElement.querySelector('div');
+    let container = this.elementRef.nativeElement.querySelector('div');
     let div = this.renderer.createElement('div');
     let btn = this.renderer.createElement('button');
     this.renderer.setProperty(btn, 'id', this.count);
@@ -31,15 +40,8 @@ export class BlocksComponent implements OnInit {
     })
   }
 
-  constructor(private renderer: Renderer2, private el: ElementRef) { }
-
-  ngOnInit() { }
-
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.renderer.destroy();
   }
 
-  showAlert(idx){
-    alert(`Button in div ${idx} is clicked`);
-  }
 }
