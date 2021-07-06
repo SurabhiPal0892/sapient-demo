@@ -6,7 +6,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
   styleUrls: ['./click-counts.component.css']
 })
 export class ClickCountsComponent implements OnInit {
-  @Input() actionCount: { start: any; pause: any };
+  @Input() actionCount: { start: number; pause: number };
 
   constructor() { }
 

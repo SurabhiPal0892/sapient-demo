@@ -5,14 +5,15 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class NotifyCountsService {
-  clickCounts = new Subject<any>();
+  clickCounts = new Subject<{start:number,pause:number}>();
 
   constructor() { }
+
   sendClickCounts(counts) {
     this.clickCounts.next(counts);
   }
 
-  getClickCounts(): Observable<any> {
+  getClickCounts(): Observable<{start:number,pause:number}> {
     return this.clickCounts.asObservable();
   }
 }

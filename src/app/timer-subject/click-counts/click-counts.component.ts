@@ -8,7 +8,7 @@ import { NotifyCountsService } from '../Services/notify-counts.service';
   styleUrls: ['./click-counts.component.css']
 })
 export class ClickCountsComponent implements OnInit,OnDestroy {
-  clickCounts = { started: 0, paused: 0, reset: false };
+  clickCounts = { start: 0, pause: 0 };
   clickCounts$: Subscription;
 
   constructor(private _notifyClickCounts: NotifyCountsService) {

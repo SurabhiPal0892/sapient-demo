@@ -30,7 +30,7 @@ export class ScorecardComponent implements OnInit {
     }
   }
 
-  sortTable(header: any) {
+  sortTable(header) {
     this.getSortType();
     if (this.sortOrder == 'asc') {
       this.studentRecords.sort((a, b) => a[header] > b[header] ? 1 : a[header] < b[header] ? -1 : 0); // For ascending sort

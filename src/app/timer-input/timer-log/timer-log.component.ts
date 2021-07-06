@@ -6,9 +6,8 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
   styleUrls: ['./timer-log.component.css']
 })
 export class TimerLogComponent implements OnInit {
-  @Input() actionType: any;
-  actionLog: any = [];
-  action: string;
+  @Input() actionType: {start:boolean,pause:boolean,reset:boolean};
+  actionLog=[];
   constructor() { }
 
   ngOnInit() {

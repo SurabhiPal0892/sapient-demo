@@ -7,16 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimerComponent implements OnInit {
   countdownTimer = { time: 1000 };
-  isPaused: any;
-  isStart: any;
-  pauseCount: any = 0;
-  startCount: any = 0;
-  counts: any;
-  actionLog = { started: 'false', paused: 'false' };
-  updatedTimer: any;
-  nTime: any;
-  actionCount: any;
-  actionType: any;
+  isPaused: boolean;
+  isStart: boolean;
+  pauseCount = 0;
+  startCount = 0;
+  updatedTimer: number;
+  actionCount: { start: number; pause: number };
+  actionType:{start:boolean,pause:boolean,reset:boolean};
+
   constructor() { }
 
   ngOnInit() { }
@@ -39,21 +37,17 @@ export class TimerComponent implements OnInit {
 
   isPauseClicked(paused) {
     this.isPaused = paused;
-    this.actionLog = { started: this.isStart, paused: this.isPaused };
   }
 
   isStartClicked(start) {
     this.isStart = start;
-    this.actionLog = { started: this.isStart, paused: this.isPaused };
   }
 
   getPauseCounts(counts) {
     this.pauseCount = counts;
-    this.counts = { start: this.startCount, pause: this.pauseCount };
   }
 
   getStartCounts(counts) {
     this.startCount = counts;
-    this.counts = { start: this.startCount, pause: this.pauseCount };
   }
 }

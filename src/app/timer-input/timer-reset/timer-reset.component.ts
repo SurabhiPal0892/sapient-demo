@@ -6,11 +6,11 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@a
   styleUrls: ['./timer-reset.component.css']
 })
 export class TimerResetComponent implements OnInit {
-  @Output() timelimit = new EventEmitter<{ time: any }>();
+  @Output() timelimit = new EventEmitter();
   @Output() actionType = new EventEmitter();
   @Output() actionCount = new EventEmitter();
   @Input() countdownTimer;
-  pausedAt: any = [];
+  pausedAt = [];
   startCount=0;
   pauseCount=0;
   showStart: boolean=true;
@@ -19,7 +19,6 @@ export class TimerResetComponent implements OnInit {
   ngOnInit() { }
 
   ngOnChanges(changes:SimpleChange) {
-    console.log(changes)
     if (this.countdownTimer) {
       this.pausedAt.push(`Paused at ${this.countdownTimer}`);
     }
@@ -31,7 +30,6 @@ export class TimerResetComponent implements OnInit {
 
   startClicked() {
     this.showStart=false;
-    // this.timelimit.emit({ time: timeLimit });
     this.actionType.emit({start:true,pause:false,reset:false});
     this.startCount++;
     this.actionCount.emit({start:this.startCount,pause:this.pauseCount});

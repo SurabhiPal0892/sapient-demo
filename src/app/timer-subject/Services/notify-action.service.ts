@@ -5,11 +5,13 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class NotifyActionService {
-  pauseButtonClicked = new Subject<any>();
-  startButtonClicked = new Subject<any>();
-  resetButtonClicked = new Subject<any>();
+  pauseButtonClicked = new Subject<boolean>();
+  startButtonClicked = new Subject<boolean>();
+  resetButtonClicked = new Subject<boolean>();
+
   constructor() { }
-  getPauseClicked(): Observable<any> {
+  
+  getPauseClicked(): Observable<boolean> {
     return this.pauseButtonClicked.asObservable();
   }
 
@@ -17,7 +19,7 @@ export class NotifyActionService {
     this.pauseButtonClicked.next(val);
   }
 
-  getStartClicked(): Observable<any> {
+  getStartClicked(): Observable<boolean> {
     return this.startButtonClicked.asObservable();
   }
 
@@ -25,7 +27,7 @@ export class NotifyActionService {
     this.startButtonClicked.next(val);
   }
 
-  getResetClicked(): Observable<any> {
+  getResetClicked(): Observable<boolean> {
     return this.resetButtonClicked.asObservable();
   }
 

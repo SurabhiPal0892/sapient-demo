@@ -6,9 +6,10 @@ import { Observable, Subject } from 'rxjs';
 })
 export class NotifyTimerValueService {
   timerValue = new Subject<any>();
-  pausedAt = new Subject<any>();;
+  pausedAt = new Subject<number>();;
 
   constructor() { }
+
   sendTimerValue(time: number) {
     this.timerValue.next(time);
   }
@@ -21,7 +22,7 @@ export class NotifyTimerValueService {
     this.pausedAt.next(time);
   }
 
-  getPauseTime(): Observable<any> {
+  getPauseTime(): Observable<number> {
     return this.pausedAt.asObservable();
   }
 }

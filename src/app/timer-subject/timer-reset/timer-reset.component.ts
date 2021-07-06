@@ -67,7 +67,7 @@ export class TimerResetComponent implements OnInit,OnDestroy {
   }
 
   sendClickCounts() {
-    this._notifyCounts.sendClickCounts({ started: this.startCount, paused: this.pauseCount, reset: this.reset });
+    this._notifyCounts.sendClickCounts({ start: this.startCount, pause: this.pauseCount});
   }
 
   sendActionType(actionType) {
